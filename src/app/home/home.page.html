@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Formulario Reactivo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="name" type="text" placeholder="Ingresa tu nombre"></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched" class="ion-padding-start">
+      El nombre es obligatorio (min 3 caracteres).
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Ingresa tu correo"></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched" class="ion-padding-start">
+      Ingresa un correo válido.
+    </ion-note>
+    <ion-note color="danger" *ngIf="emailExistsError" class="ion-padding-start">
+      Este correo ya está registrado (ej. test@test.com).
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Edad</ion-label>
+      <ion-input formControlName="age" type="number" placeholder="Ingresa tu edad"></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="myForm.get('age')?.invalid && myForm.get('age')?.touched" class="ion-padding-start">
+      Debes ser mayor de 18 años.
+    </ion-note>
+
+    <div class="ion-margin-top">
+      <ion-button expand="block" type="submit" [disabled]="myForm.invalid || isSubmitting">
+        <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+        <span *ngIf="!isSubmitting">Enviar Datos</span>
+      </ion-button>
+    </div>
+  </form>
+
+  <ion-text color="success" *ngIf="submitMessage" class="ion-text-center ion-margin-top">
+    <p><b>{{ submitMessage }}</b></p>
+  </ion-text>
+</ion-content>
