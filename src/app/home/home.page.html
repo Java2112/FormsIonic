@@ -1,46 +1,14 @@
-<!--
-  ===================================================================
-  ENCABEZADO DE LA PÁGINA (IONIC HEADER)
-  ===================================================================
-  <ion-header>: Barra fija superior que respeta el notch o safe area del dispositivo móvil.
-  [translucent]="true": En dispositivos iOS, proporciona el efecto nativo translúcido/vidrio
-  mientras el usuario hace scroll en el contenido.
--->
 <ion-header [translucent]="true">
-  <!--
-    <ion-toolbar>: Contenedor de la barra de herramientas.
-    color="primary": Aplica el color principal del tema de la aplicación configurado en Ionic.
-  -->
   <ion-toolbar color="primary">
-    <!--
-      <ion-title>: Título de la vista. Se adapta visualmente según la plataforma
-      (centrado en iOS, alineado a la izquierda en Android/Material Design).
-    -->
     <ion-title>
       Formulario Reactivo
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<!--
-  ===================================================================
-  ÁREA DE CONTENIDO PRINCIPAL (IONIC CONTENT)
-  ===================================================================
-  <ion-content>: Componente de área desplazable (scroll) optimizado para móviles.
-  Gestiona la inercia del scroll táctil y el comportamiento cuando aparece el teclado virtual.
-  class="ion-padding": Clase utilitaria de Ionic que aplica un padding estándar móvil uniforme.
--->
 <ion-content class="ion-padding">
-  <!-- Formulario Reactivo enlazado a la propiedad 'myForm' del componente TypeScript -->
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    
-    <!-- 
-      ================ CAMPO: NOMBRE ================
-      <ion-item>: Contenedor en fila característico de las listas e inputs en Ionic.
-      Aplica bordes, líneas de separación y estados de enfoque nativos.
-    -->
     <ion-item>
-<<<<<<< HEAD
       <ion-input 
         label="Nombre" 
         labelPlacement="floating" 
@@ -54,33 +22,8 @@
         El nombre es obligatorio (min 3 caracteres).
       </ion-note>
     }
-=======
-      <!--
-        <ion-label position="floating">: Etiqueta flotante con animación nativa.
-        Comienza como un placeholder y se eleva elegantemente cuando el usuario hace foco o escribe.
-      -->
-      <ion-label position="floating">Nombre</ion-label>
-      <!--
-        <ion-input>: Input móvil de Ionic conectado al FormControl 'name'.
-        type="text": Despliega el teclado de texto general en el teléfono.
-      -->
-      <ion-input formControlName="name" type="text" placeholder="Ingresa tu nombre"></ion-input>
-    </ion-item>
-    <!--
-      <ion-note>: Mensaje informativo o de error con tipografía reducida.
-      color="danger": Aplica el color semántico de error (rojo) definido en las variables de Ionic.
-      class="ion-padding-start": Agrega una sangría izquierda para alinear el texto con el input.
-    -->
-    <ion-note color="danger" *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched" class="ion-padding-start">
-      El nombre es obligatorio (min 3 caracteres).
-    </ion-note>
->>>>>>> 305b790a536db5ddc48bc92853504d5fe49576a7
 
-    <!-- 
-      ================ CAMPO: CORREO ELECTRÓNICO ================
-    -->
     <ion-item>
-<<<<<<< HEAD
       <ion-input 
         label="Correo Electrónico" 
         labelPlacement="floating" 
@@ -99,26 +42,8 @@
         Este correo ya está registrado (ej. test@test.com).
       </ion-note>
     }
-=======
-      <ion-label position="floating">Correo Electrónico</ion-label>
-      <!-- type="email": Solicita al teclado del teléfono mostrar la tecla '@' y atajos de dominio -->
-      <ion-input formControlName="email" type="email" placeholder="Ingresa tu correo"></ion-input>
-    </ion-item>
-    <!-- Validación de formato y obligatoriedad -->
-    <ion-note color="danger" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched" class="ion-padding-start">
-      Ingresa un correo válido.
-    </ion-note>
-    <!-- Validación asíncrona: correo duplicado o ya existente -->
-    <ion-note color="danger" *ngIf="emailExistsError" class="ion-padding-start">
-      Este correo ya está registrado (ej. test@test.com).
-    </ion-note>
->>>>>>> 305b790a536db5ddc48bc92853504d5fe49576a7
 
-    <!-- 
-      ================ CAMPO: EDAD ================
-    -->
     <ion-item>
-<<<<<<< HEAD
       <ion-input 
         label="Edad" 
         labelPlacement="floating" 
@@ -132,67 +57,21 @@
         Debes ser mayor de 18 años.
       </ion-note>
     }
-=======
-      <ion-label position="floating">Edad</ion-label>
-      <!-- type="number": Despliega el teclado numérico en el dispositivo móvil -->
-      <ion-input formControlName="age" type="number" placeholder="Ingresa tu edad"></ion-input>
-    </ion-item>
-    <!-- Validación de edad mínima (mayor de 18) -->
-    <ion-note color="danger" *ngIf="myForm.get('age')?.invalid && myForm.get('age')?.touched" class="ion-padding-start">
-      Debes ser mayor de 18 años.
-    </ion-note>
->>>>>>> 305b790a536db5ddc48bc92853504d5fe49576a7
 
-    <!-- 
-      ================ BOTÓN DE ENVÍO ================
-      class="ion-margin-top": Clase utilitaria de espaciado que agrega un margen superior estándar.
-    -->
     <div class="ion-margin-top">
-      <!--
-        <ion-button>: Botón móvil con soporte táctil.
-        expand="block": Hace que el botón ocupe todo el ancho disponible de la pantalla,
-        ideal para botones de acción principal (CTA) en interfaces móviles.
-        [disabled]: Deshabilita el botón si el formulario es inválido o si ya está en proceso de envío.
-      -->
       <ion-button expand="block" type="submit" [disabled]="myForm.invalid || isSubmitting">
-<<<<<<< HEAD
         @if (isSubmitting) {
           <ion-spinner name="crescent"></ion-spinner>
         } @else {
           <span>Enviar Datos</span>
         }
-=======
-        <!--
-          <ion-spinner>: Animación nativa de carga (loading) de Ionic.
-          name="crescent": Estilo de spinner circular suave muy común en apps móviles modernas.
-        -->
-        <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
-        <!-- Texto visible cuando no se está enviando -->
-        <span *ngIf="!isSubmitting">Enviar Datos</span>
->>>>>>> 305b790a536db5ddc48bc92853504d5fe49576a7
       </ion-button>
     </div>
   </form>
 
-<<<<<<< HEAD
   @if (submitMessage) {
     <ion-text color="success" class="ion-text-center ion-margin-top">
       <p><b>{{ submitMessage }}</b></p>
     </ion-text>
   }
 </ion-content>
-=======
-  <!--
-    ===================================================================
-    MENSAJE DE RETROALIMENTACIÓN / ÉXITO (IONIC TEXT)
-    ===================================================================
-    <ion-text>: Componente para colorear y estilizar texto dentro del sistema de diseño de Ionic.
-    color="success": Aplica el color verde semántico de éxito del tema de Ionic.
-    class="ion-text-center ion-margin-top": Centra el texto y agrega margen superior con utilidades Ionic.
-  -->
-  <ion-text color="success" *ngIf="submitMessage" class="ion-text-center ion-margin-top">
-    <p><b>{{ submitMessage }}</b></p>
-  </ion-text>
-</ion-content>
-
->>>>>>> 305b790a536db5ddc48bc92853504d5fe49576a7
