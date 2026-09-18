@@ -1,14 +1,22 @@
+<!-- Encabezado translúcido de Ionic para la parte superior de la interfaz -->
 <ion-header [translucent]="true">
+  <!-- Barra de herramientas de Ionic estilizada con el color primario del tema de la app -->
   <ion-toolbar color="primary">
+    <!-- Título de la página principal -->
     <ion-title>
       Formulario Reactivo
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<!-- Contenedor del contenido principal de la página con espaciado (padding) -->
 <ion-content class="ion-padding">
+  <!-- Formulario de Angular vinculado al FormGroup 'myForm' y al método de envío '(ngSubmit)="onSubmit()"' -->
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Elemento ion-item que agrupa el campo del Nombre -->
     <ion-item>
+      <!-- Entrada de texto reactiva vinculada al control 'name' con etiqueta flotante moderna (Ionic 8+) -->
       <ion-input 
         label="Nombre" 
         labelPlacement="floating" 
@@ -17,13 +25,17 @@
         placeholder="Ingresa tu nombre">
       </ion-input>
     </ion-item>
+    <!-- Bloque de control de flujo nativo de Angular 17+ (@if) para validar el Nombre -->
     @if (myForm.get('name')?.invalid && myForm.get('name')?.touched) {
+      <!-- Nota informativa en color rojo que se muestra si el nombre no cumple la regla de mínimo 3 letras -->
       <ion-note color="danger" class="ion-padding-start">
         El nombre es obligatorio (min 3 caracteres).
       </ion-note>
     }
 
+    <!-- Elemento ion-item que agrupa el campo del Correo Electrónico -->
     <ion-item>
+      <!-- Entrada de texto reactiva vinculada al control 'email' -->
       <ion-input 
         label="Correo Electrónico" 
         labelPlacement="floating" 
@@ -32,18 +44,24 @@
         placeholder="Ingresa tu correo">
       </ion-input>
     </ion-item>
+    <!-- Bloque @if que evalúa si el formato del correo ingresado no es válido -->
     @if (myForm.get('email')?.invalid && myForm.get('email')?.touched) {
+      <!-- Nota de error para formato de email erróneo -->
       <ion-note color="danger" class="ion-padding-start">
         Ingresa un correo válido.
       </ion-note>
     }
+    <!-- Bloque @if que evalúa si el servicio UserService detectó que el correo ya está registrado en BD -->
     @if (emailExistsError) {
+      <!-- Nota de alerta especificando que el correo ingresado ya existe (ej. test@test.com) -->
       <ion-note color="danger" class="ion-padding-start">
         Este correo ya está registrado (ej. test@test.com).
       </ion-note>
     }
 
+    <!-- Elemento ion-item que agrupa el campo de la Edad -->
     <ion-item>
+      <!-- Entrada de tipo numérico reactiva vinculada al control 'age' -->
       <ion-input 
         label="Edad" 
         labelPlacement="floating" 
@@ -52,24 +70,33 @@
         placeholder="Ingresa tu edad">
       </ion-input>
     </ion-item>
+    <!-- Bloque @if que evalúa si la edad es menor a 18 años -->
     @if (myForm.get('age')?.invalid && myForm.get('age')?.touched) {
+      <!-- Nota de error si no se cumple la mayoría de edad (mínimo 18) -->
       <ion-note color="danger" class="ion-padding-start">
         Debes ser mayor de 18 años.
       </ion-note>
     }
 
+    <!-- Contenedor con margen superior para ubicar el botón de acción -->
     <div class="ion-margin-top">
+      <!-- Botón de envío que se inhabilita automáticamente si el formulario es inválido o si se está enviando -->
       <ion-button expand="block" type="submit" [disabled]="myForm.invalid || isSubmitting">
+        <!-- Bloque @if que conmuta entre mostrar el spinner de carga o el texto 'Enviar Datos' -->
         @if (isSubmitting) {
+          <!-- Indicador de carga animado de Ionic (spinner) -->
           <ion-spinner name="crescent"></ion-spinner>
         } @else {
+          <!-- Etiqueta de texto normal del botón -->
           <span>Enviar Datos</span>
         }
       </ion-button>
     </div>
   </form>
 
+  <!-- Bloque @if que muestra el mensaje de confirmación cuando el envío concluye con éxito -->
   @if (submitMessage) {
+    <!-- Texto formateado en color verde (success) centrado en la pantalla -->
     <ion-text color="success" class="ion-text-center ion-margin-top">
       <p><b>{{ submitMessage }}</b></p>
     </ion-text>
