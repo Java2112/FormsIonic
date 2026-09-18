@@ -1,3 +1,20 @@
+<!--
+  <ion-app>:
+  Es el elemento contenedor raíz fundamental de cualquier aplicación creada con Ionic Framework.
+  Cumple funciones críticas para el entorno móvil:
+  1. Ocupa el 100% de la pantalla (viewport) y previene problemas de scroll indeseados.
+  2. Ajusta automáticamente las "Safe Areas" (márgenes seguros para notches de cámaras y barras de navegación del SO).
+  3. Contiene la capa superior donde se montan componentes flotantes globales como Modales, Alertas y Toasts.
+-->
 <ion-app>
+  <!--
+    <ion-router-outlet>:
+    Es el enrutador de vistas especializado de Ionic para Angular.
+    A diferencia del <router-outlet> estándar de Angular:
+    - Soporta navegación estilo móvil (pila / stack navigation), manteniendo páginas previas en memoria.
+    - Aplica animaciones nativas de transición entre pantallas (deslizamientos iOS o efectos de Material Design).
+    - Permite el gesto táctil de deslizar para volver atrás (swipe-to-go-back).
+  -->
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
+
